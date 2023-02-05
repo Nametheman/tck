@@ -5,7 +5,14 @@ import {
   Redirect,
   Routes,
 } from "react-router-dom";
-import { Landing, About, Rules, FAQ, Contact } from "./components/Pages";
+import {
+  Landing,
+  About,
+  Rules,
+  FAQ,
+  Contact,
+  SignUp,
+} from "./components/Pages";
 // import {Protecte}
 
 function App() {
@@ -19,6 +26,7 @@ function App() {
           <Route path="/rules" element={<Rules />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/register" element={<SignUp />} />
         </Routes>
       </Router>
     </>

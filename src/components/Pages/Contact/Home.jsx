@@ -90,7 +90,7 @@ const Container = styled.section`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid;
+  // border: 1px solid;
 
   img {
     width: 45%;
