@@ -1,14 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import bg from "../../../assets/images/Authentication.gif";
 
 const Home = () => {
   const [fullName, setFullName] = useState("");
   const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const [confirmEmail, setConfirmEmail] = useState("");
   const [epay, setEpay] = useState("");
   const [bitcoin, setBitcoin] = useState("");
   const [litecoin, setLitecoin] = useState("");
@@ -23,39 +19,74 @@ const Home = () => {
   const [stellar, setStellar] = useState("");
   const [secretQuestion, setSecretQuestion] = useState("");
   const [secretAnswer, setSecretAnswer] = useState("");
-  const [message, setMessage] = useState("");
   const [error, setError] = useState(false);
+  const [error2, setError2] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [submitDisabled, setSubmitDisabled] = useState(true);
+  let passwordRef = useRef("");
+  let confirmPasswordRef = useRef();
+  let emailRef = useRef("");
+  let confirmEmailref = useRef("");
+  let password = passwordRef.current?.value;
+  let confirmPassword = confirmPasswordRef.current?.value;
+  let email = emailRef.current?.value;
+  let confirmEmail = confirmEmailref.current?.value;
 
+  let payload = {
+    fullName,
+    username,
+    password,
+    confirmPassword,
+    email,
+    confirmEmail,
+    epay,
+    bitcoin,
+    litecoin,
+    dogecoin,
+    ethereum,
+    dash,
+    tetherErc20,
+    tetherTrc20,
+    tetherBep20,
+    tron,
+    bnb,
+    stellar,
+    secretQuestion,
+    secretAnswer,
+  };
   const fullNameHandler = (e) => {
     setFullName(e.target.value);
   };
   const usernameEnterHandler = (e) => {
     setUsername(e.target.value);
   };
-  const passwordHandler = (e) => {
-    setPassword(e.target.value);
-    console.info(password);
-  };
-  const confirmPasswordHandler = (e) => {
-    setConfirmPassword(e.target.value);
-    console.info(confirmPassword);
-    if (confirmPassword !== password) {
+  //   const passwordHandler = () => {};
+  const confirmPasswordHandler = () => {
+    if (
+      confirmPasswordRef.current.value.length > 1 &&
+      confirmPasswordRef.current.value !== passwordRef.current.value
+    ) {
       setError(true);
-      setErrorMessage("Passwords unmatch");
-    }
-    if (confirmPassword === password) {
+      setErrorMessage("Passwords doesn't match");
+    } else {
       setError(false);
       setErrorMessage("");
     }
   };
 
-  const emailEnterHandler = (e) => {
-    setEmail(e.target.value);
-  };
-  const confirmEmailHandler = (e) => {
-    setConfirmEmail(e.target.value);
+  //   const emailEnterHandler = () => {
+  // =  };
+  const confirmEmailHandler = () => {
+    if (
+      confirmEmailref.current.value.length > 1 &&
+      confirmEmailref.current.value !== emailRef.current.value
+    ) {
+      setError2(true);
+      setErrorMessage("Email addresses doesn't match");
+    } else {
+      setError2(false);
+      setErrorMessage("");
+    }
   };
 
   const yourEpayHandler = (e) => {
@@ -102,42 +133,34 @@ const Home = () => {
   };
 
   useEffect(() => {
-    if (email.length < 3 || username.length < 3 || message.length < 2) {
-      setSubmitDisabled(true);
-    } else {
+    if (
+      confirmEmailref.current.value.length > 1 &&
+      confirmPasswordRef.current.value.length > 1 &&
+      passwordRef.current.value.length > 1 &&
+      emailRef.current.value.length > 1 &&
+      fullName.length > 1 &&
+      username.length > 1 &&
+      secretQuestion.length > 1 &&
+      secretAnswer.length > 1
+    ) {
       setSubmitDisabled(false);
+    } else {
+      setSubmitDisabled(true);
     }
-  }, [username, email, message]);
+  }, [fullName, username, secretQuestion, secretAnswer]);
 
-  useEffect(() => {
-    const passwordHandler = (e) => {
-      setPassword(e.target.value);
-      console.log(password);
-    };
-    const confirmPasswordHandler = (e) => {
-      setConfirmPassword(e.target.value);
-      console.log(confirmPassword);
-      if (confirmPassword !== password) {
-        setError(true);
-        setErrorMessage("Passwords unmatch");
-      }
-      if (confirmPassword === password) {
-        setError(false);
-        setErrorMessage("");
-      }
-    };
-  }, [password]);
-
-  const payload = { username, email, message };
   const submitHandler = (e) => {
     e.preventDefault();
     console.log(payload);
   };
+
   return (
     <Container>
       <FormContainer>
-        {" "}
         <form onSubmit={submitHandler}>
+          <h2 style={{ textAlign: "center", color: "#3d3d3d" }}>
+            Create Your Account
+          </h2>
           <span>
             <div className="inputWrapper">
               <label htmlFor="fullname">Your Full Name</label>
@@ -167,13 +190,13 @@ const Home = () => {
               <label htmlFor="password">Your Password</label>
               <input
                 type="password"
-                value={password}
+                // value={password}
                 name="password"
                 id="password"
                 className="input"
+                ref={passwordRef}
                 // onFocus={passwordHandler}
                 // onChange={passwordHandler}
-                onInput={passwordHandler}
               />
             </div>
             <div className="inputWrapper">
@@ -181,12 +204,14 @@ const Home = () => {
               {error && error && <small>{errorMessage}</small>}
               <input
                 type="password"
-                value={confirmPassword}
+                // value={confirmPassword}
                 name="password"
                 id="password"
                 className="input"
-                onFocus={confirmPasswordHandler}
-                onChange={confirmPasswordHandler}
+                // onFocus={confirmPasswordHandler}
+                // onChange={confirmPasswordHandler}
+                ref={confirmPasswordRef}
+                onInput={confirmPasswordHandler}
               />
             </div>
           </span>
@@ -195,21 +220,23 @@ const Home = () => {
               <label htmlFor="email">Your email address</label>
               <input
                 type="email"
-                value={email}
+                // value={email}
                 name="email"
                 id="email"
                 className="input"
-                onChange={emailEnterHandler}
+                ref={emailRef}
               />
             </div>
             <div className="inputWrapper">
               <label htmlFor="email">Retype your email</label>
+              {error2 && error2 && <small>{errorMessage}</small>}
               <input
                 type="email"
-                value={confirmEmail}
+                // value={confirmEmail}
                 name="email"
                 id="email"
                 className="input"
+                ref={confirmEmailref}
                 onChange={confirmEmailHandler}
               />
             </div>
@@ -382,11 +409,8 @@ const Home = () => {
               />
             </div>
           </span>
-
           <div className="button">
-            <button disabled={submitDisabled ? true : false}>
-              Send Message
-            </button>
+            <button disabled={submitDisabled ? true : false}>Register</button>
           </div>
         </form>
       </FormContainer>
@@ -398,14 +422,19 @@ const Home = () => {
 export default Home;
 const Container = styled.section`
   padding: 60px 80px;
+  //   background: url(${bg});
+  //   background-repeat: no-repeat;
+  //   background-position: center;
+
   display: flex;
   //   height: 100vh;
   align-items: center;
   justify-content: space-between;
   // border: 1px solid;
   img {
+    // visibility: hidden;
     width: 45%;
-    height: 100%;
+    // height: 800px;
   }
 `;
 const FormContainer = styled.div`

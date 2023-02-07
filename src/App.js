@@ -12,6 +12,7 @@ import {
   FAQ,
   Contact,
   SignUp,
+  Login,
 } from "./components/Pages";
 // import {Protecte}
 
@@ -27,6 +28,7 @@ function App() {
           <Route path="/faq" element={<FAQ />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/register" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </Router>
     </>

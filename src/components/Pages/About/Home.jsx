@@ -38,7 +38,7 @@ const Home = () => {
             mutual benefit of this direction - the clients of the funds develop
             their business due to the influx of large external investments,
             investors receive a stable passive income, and the organizations
-            themselves profit from constant capital turnover. The Meta-Hours
+            themselves profit from constant capital turnover. The TopCoinXpert
             company is identical to investment funds by the nature of its
             activities, working in several profitable areas. Working capital is
             used not only for the purpose of concluding large transactions for
@@ -51,7 +51,7 @@ const Home = () => {
             of attracting third-party investments not only from legal entities,
             but also from private investors. By establishing a connection
             between all participants in the activity through this online
-            project, Meta-Hours is able to generate impressive profits, which
+            project, TopCoinXpert is able to generate impressive profits, which
             are distributed among investors proportionally in the form of
             investment dividends. A flexible policy of activity in international
             financial markets and an effective organizational structure of
