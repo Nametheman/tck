@@ -6,5 +6,4 @@ const Content = ({ children }) => {
 };
 
 export default Content;
-
 const Container = styled.div``;

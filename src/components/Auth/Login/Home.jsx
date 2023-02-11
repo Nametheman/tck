@@ -1,33 +1,38 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import bg from "../../../assets/images/Authentication.gif";
+import { useDispatch } from "react-redux";
+import { authActions } from "../../../redux/reducers/authSlice";
 
 const Home = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [error, setError] = useState(false);
   const [error2, setError2] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [submitDisabled, setSubmitDisabled] = useState(true);
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
 
-  let passwordRef = useRef("");
-  let emailRef = useRef("");
-  const password = passwordRef?.current?.value || "";
-  const email = emailRef?.current?.value || "";
+  let payload = { email, password };
 
-  let payload = { password, email };
-
-  useEffect(() => {
-    if (email.length > 1 && password.length > 1) {
+  const emailHandler = (e) => {
+    setEmail(e.target.value);
+  };
+  const passwordHandler = (e) => {
+    setPassword(e.target.value);
+    if (email?.length > 1 && password?.length > 1) {
       setSubmitDisabled(false);
     } else {
       setSubmitDisabled(true);
     }
-  }, [email, password]);
-
-  const passwordHandler = () => {};
+  };
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(payload);
+    dispatch(authActions.authenticateUser(payload));
+    navigate("/dashboard");
   };
   return (
     <Container>
@@ -38,11 +43,12 @@ const Home = () => {
               <label htmlFor="email">Your email address</label>
               <input
                 type="email"
-                // value={email}
+                value={email}
                 name="email"
                 id="email"
                 className="input"
-                ref={emailRef}
+                // ref={emailRef}
+                onChange={emailHandler}
               />
             </div>
             <div className="inputWrapper">
@@ -50,11 +56,11 @@ const Home = () => {
               {/* {error2 && error2 && <small>{errorMessage}</small>} */}
               <input
                 type="password"
-                // value={confirmEmail}
+                value={password}
                 name="password"
                 id="password"
                 className="input"
-                ref={passwordRef}
+                // ref={passwordRef}
                 onChange={passwordHandler}
               />
             </div>
@@ -96,9 +102,11 @@ const FormContainer = styled.div`
   
   
   form {
-      border: 1px solid #211103;
       padding: 40px 20px;
      border-radius: 5px;
+         box-shadow: 0px 0px 51px -2px rgba(0,0,0,0.39);
+-webkit-box-shadow: 0px -1px 51px -2px rgba(0,0,0,0.39);
+-moz-box-shadow: 0px 0px 51px -2px rgba(0,0,0,0.39);
 
 
     span {

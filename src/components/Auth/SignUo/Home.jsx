@@ -444,6 +444,7 @@ const FormContainer = styled.div`
   flex: 1;
 
   form {
+
     span {
       display: flex;
       gap: 18px;

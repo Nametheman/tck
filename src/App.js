@@ -13,8 +13,8 @@ import {
   Contact,
   SignUp,
   Login,
+  Dashboard,
 } from "./components/Pages";
-// import {Protecte}
 
 function App() {
   return (
@@ -29,6 +29,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/register" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </Router>
     </>

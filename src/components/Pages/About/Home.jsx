@@ -7,7 +7,7 @@ import { HowItWorks } from "../Landing/SecondSectio/Second";
 import Steps from "../About/Steps";
 import Third from "../Landing/ThirdSection/Third";
 
-const Home = () => {
+const Home = ({ type }) => {
   return (
     <Wrapper>
       <Title>

@@ -1,5 +1,4 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
 import { PagesLayout } from "../../../layout";
 import styled from "styled-components";
 import Home from "./Home";
@@ -7,7 +6,7 @@ import Home from "./Home";
 const Index = () => {
   return (
     <PagesLayout
-      content1={
+      dashboard={
         <Container>
           <Home />
         </Container>

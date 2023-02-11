@@ -13,9 +13,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* color: #c13c60; */
+  /* color: #9e5f6f; */
   max-width: 1280px;
   margin: 0 auto;
+  background-repeat: no-repeat;
 }
 
 code {

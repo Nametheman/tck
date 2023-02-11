@@ -7,11 +7,9 @@ import Home from "./Home";
 const Index = () => {
   return (
     <PagesLayout
-      children={
+      content1={
         <Container>
-          {/* <Route path="/landing"> */}
           <Home />
-          {/* </Route> */}
         </Container>
       }
     />

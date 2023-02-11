@@ -68,7 +68,7 @@ const Title = styled.div`
 
 const Body = styled.div`
   background: url(${headBg}), no-repeat;
-  padding: 20px 70px;
+  padding: 20px 30px;
   position: relative;
   margin: 0 !important;
 

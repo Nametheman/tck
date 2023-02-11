@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import bg from "../../assets/images/img-bg1.jpg";
 import logo from "../../assets/images/logo.png";
@@ -8,55 +8,68 @@ import {
   FaTelegramPlane,
   FaTwitter,
 } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 const Footer = () => {
+  const isAuthenticated = useSelector((state) => state.auth.isLoggedIn);
+  console.log(isAuthenticated);
+
+  useEffect(() => {
+    console.log("logged in");
+  }, [isAuthenticated]);
   return (
     <Container>
-      <FooterWrapper>
-        <FirstSection>
-          <h3>TopCoinXpert</h3>{" "}
+      {isAuthenticated ? null : (
+        <FooterWrapper>
+          <FirstSection>
+            <h3>TopCoinXpert</h3>{" "}
+            <p>
+              To ensure the growth of working capital, our company decided to
+              use the option of attracting third-party investments
+            </p>
+            <SocalsWrapper>
+              <FaFacebookF />
+              <FaPinterest />
+              <FaTelegramPlane />
+              <FaTwitter />
+            </SocalsWrapper>
+          </FirstSection>
+          <SecondSection>
+            <h3>Visit Links</h3>
+            <a href="#">Latest News</a>
+            <a href="#">Terms & Conditions</a>
+            <a href="#">FAQ</a>
+          </SecondSection>
+          <ThirdSection>
+            <h3>Quick Links</h3>
+            <a href="#">About Us</a>
+            <a href="#">Member Stats</a>
+            <a href="#">Paidout History</a>
+            <a href="#">Banners</a>
+          </ThirdSection>
+          <FourthSection>
+            <h3>Contact</h3>
+            <p>Tel - For VIP members</p>
+            <p>admin@meta-hours.club</p>
+            <p>support@meta-hours.club</p>
+          </FourthSection>
+          <FifthSection>
+            <h3>Address</h3>
+            <p>
+              Hong Kong, Hung Hom, Whampoa Garden Site 3 Block 3, 地下15號舖
+            </p>
+          </FifthSection>
+        </FooterWrapper>
+      )}
+      {isAuthenticated ? null : (
+        <NoteSection>
           <p>
-            To ensure the growth of working capital, our company decided to use
-            the option of attracting third-party investments
+            <strong>NOTE</strong> : We do not recommend that you spend what you
+            cannot afford to lose. You must be aware of any investment risk. We
+            cannot be held responsible for your choices or actions.
           </p>
-          <SocalsWrapper>
-            <FaFacebookF />
-            <FaPinterest />
-            <FaTelegramPlane />
-            <FaTwitter />
-          </SocalsWrapper>
-        </FirstSection>
-        <SecondSection>
-          <h3>Visit Links</h3>
-          <a href="#">Latest News</a>
-          <a href="#">Terms & Conditions</a>
-          <a href="#">FAQ</a>
-        </SecondSection>
-        <ThirdSection>
-          <h3>Quick Links</h3>
-          <a href="#">About Us</a>
-          <a href="#">Member Stats</a>
-          <a href="#">Paidout History</a>
-          <a href="#">Banners</a>
-        </ThirdSection>
-        <FourthSection>
-          <h3>Contact</h3>
-          <p>Tel - For VIP members</p>
-          <p>admin@meta-hours.club</p>
-          <p>support@meta-hours.club</p>
-        </FourthSection>
-        <FifthSection>
-          <h3>Address</h3>
-          <p>Hong Kong, Hung Hom, Whampoa Garden Site 3 Block 3, 地下15號舖</p>
-        </FifthSection>
-      </FooterWrapper>
-      <NoteSection>
-        <p>
-          <strong>NOTE</strong> : We do not recommend that you spend what you
-          cannot afford to lose. You must be aware of any investment risk. We
-          cannot be held responsible for your choices or actions.
-        </p>
-      </NoteSection>
+        </NoteSection>
+      )}
       <div style={{ textAlign: "center", color: "#777574", fontWeight: "500" }}>
         Copyright @ 2022 TopCoinXpert All Rights Reserved.
       </div>
